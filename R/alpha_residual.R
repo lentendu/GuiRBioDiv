@@ -30,6 +30,7 @@
 #' @importFrom stats lm residuals
 #' @importFrom plyr ddply dlply laply ldply llply
 #' @importFrom rlang .data
+#' @import dplyr
 #' @export
 #' @seealso
 #' [hill_index()] to compute Hill's numbers without correction
@@ -73,8 +74,8 @@ alpha_residual<-function(x, counts, id="sample", index="hill", trans="auto", tre
           tibble::rownames_to_column(id)
       }, .id="trans")
     tmp<-tidyr::gather(z, "index", "value", -all_of(id) ) %>%
-      dplyr::mutate(index=factor(index, levels=unique(index))) %>%
-      dplyr::left_join(counts, by=id)
+      mutate(index=factor(index, levels=unique(index))) %>%
+      left_join(counts, by=id)
     tmp_lm<-dlply(tmp, "index", function(i) {
       dlply(i, "trans", function(j) {
         lm(value ~ counts, data=j)
@@ -123,8 +124,8 @@ alpha_residual<-function(x, counts, id="sample", index="hill", trans="auto", tre
       counts <- log(counts)
     }
     tmp<-tidyr::gather(z, "index", "value", -all_of(id) ) %>%
-      dplyr::mutate(index=factor(index, levels=unique(index))) %>%
-      dplyr::left_join(tibble::rownames_to_column(data.frame(counts=counts), id), by=id)
+      mutate(index=factor(index, levels=unique(index))) %>%
+      left_join(tibble::rownames_to_column(data.frame(counts=counts), id), by=id)
     ddply(tmp, "index", function(i){
       tmpi<-unique(i$index)
       tmp_lm<-summary(lm(value ~ counts, data=i))
