@@ -9,11 +9,14 @@
 The goal of GuiRBioDiv is to provide some wrapper functions to speed-up
 alpha diversity analyses of metabarcoding datasets.
 
-It features: - `alpha_residual` for correction of sequencing depth bias
-for alpha diversity indices with linear models - `endemic` to identify
-species/OTUs/ASVs uniquely found in one geographic region -
-`transformTukey2` to transform numeric vectors to more normally
-distributed values with Tukey’s ladder of power method
+It features:
+
+- `alpha_residual` for correction of sequencing depth bias for alpha
+  diversity indices with linear models
+- `endemic` to identify species/OTUs/ASVs uniquely found in one
+  geographic region
+- `transformTukey2` to transform numeric vectors to more normally
+  distributed values with Tukey’s ladder of power method
 
 ## Installation
 
