@@ -1,0 +1,45 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# GuiRBioDiv
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of GuiRBioDiv is to provide some wrapper functions to speed-up alpha diversity analyses of metabarcoding datasets.
+
+It features:
+ -  `alpha_residual` for correction of sequencing depth bias for alpha diversity indices with linear models
+ -  `endemic` to identify species/OTUs/ASVs uniquely found in one geographic region
+ -  `transformTukey2` to transform numeric vectors to more normally distributed values with Tukey's ladder of power method
+
+
+## Installation
+
+`GuiRBioDiv` can be installed from GitHub like so:
+
+``` r
+install.packages("remotes")
+remotes::install_github("lentendu/GuiRBioDiv")
+```
+
+## Example
+
+Compute Hill numbers and correct for sequencing depth bias:
+
+```{r example}
+library(GuiRBioDiv)
+alphadiv<-alpha_residual(mat_exa, index="hill", inform=T)
+```
