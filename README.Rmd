@@ -26,6 +26,7 @@ It features:
 -   `endemic` to identify species/OTUs/ASVs uniquely found in one geographic region
 -   `transformTukey2` to transform numeric vectors to more normally distributed values with Tukey's ladder of power method
 
+and few more ...
 
 ## Installation
 

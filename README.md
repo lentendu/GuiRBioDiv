@@ -18,6 +18,8 @@ It features:
 - `transformTukey2` to transform numeric vectors to more normally
   distributed values with Tukey’s ladder of power method
 
+and few more …
+
 ## Installation
 
 `GuiRBioDiv` can be installed from GitHub like so:
