@@ -4,7 +4,7 @@
 \alias{transformTukey2}
 \title{Tukey's Ladder of Powers transformation}
 \usage{
-transformTukey2(x, lambda = seq(-2, 2, 0.05), onlynn = FALSE)
+transformTukey2(x, lambda = seq(-2, 2, 0.05), onlynn = FALSE, naomit = FALSE)
 }
 \arguments{
 \item{x}{a numeric vector to transform}
@@ -14,6 +14,9 @@ to find the transformation wit best normality}
 
 \item{onlynn}{if TRUE, only perform the transformation if the
 input vector is not already normal, otherwise return x}
+
+\item{naomit}{if TRUE, perform the transformation on non NA values,
+else return an error}
 }
 \value{
 a list with four elements:

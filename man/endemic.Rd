@@ -9,7 +9,7 @@ endemic(x, geo, splits = F, singleocc = T)
 \arguments{
 \item{x}{an occurrence or abundance matrix}
 
-\item{geo}{a vector or factor grouping the samples of the matrix}
+\item{geo}{a vector or factor of geographic units grouping the samples of the matrix}
 
 \item{splits}{return a long data-frame with the list of endemic
 species/OTUs, there geographic group and the number of sites in
@@ -19,8 +19,8 @@ which they occur}
 remove them, or give a numeric to set the minimum occurrence}
 }
 \value{
-the number of species/OTUs of each sample uniquely found in
-each geographic group
+a named vector of the number of species/OTUs of each sample uniquely found in
+the geographic unit the sample is coming from
 }
 \description{
 Identify endemic species in a community matrix based on geographic

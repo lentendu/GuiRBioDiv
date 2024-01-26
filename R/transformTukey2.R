@@ -9,6 +9,8 @@
 #'      to find the transformation wit best normality
 #' @param onlynn if TRUE, only perform the transformation if the
 #'      input vector is not already normal, otherwise return x
+#' @param naomit if TRUE, perform the transformation on non NA values,
+#'      else return an error
 #' @return a list with four elements:
 #' \itemize{
 #'   \item val - a vector of transformed values
@@ -18,6 +20,7 @@
 #' }
 #' @references http://rcompanion.org/handbook/I_12.html
 #' @importFrom stats shapiro.test
+#' @importFrom R.utils insert
 #' @export
 #' @examples
 #' set.seed(2)
@@ -27,7 +30,16 @@
 #' set.seed(2)
 #' transformTukey2(rnorm(10), onlynn = TRUE)
 #'
-transformTukey2<-function(x, lambda=seq(-2,2,0.05), onlynn = FALSE) {
+transformTukey2<-function(x, lambda=seq(-2,2,0.05), onlynn = FALSE, naomit = FALSE) {
+  # test if NA
+  if(any(is.na(x))) {
+    if (naomit) {
+      nax<-which(is.na(x))
+      x<-x[!is.na(x)]
+    } else {
+      stop("data contains NA")
+    }
+  }
   # test normality and continue with transformation only if non-normal or return untransformed values otherwise
   if(onlynn) {
     tmp<-shapiro.test(x)
@@ -47,9 +59,15 @@ transformTukey2<-function(x, lambda=seq(-2,2,0.05), onlynn = FALSE) {
     return(cbind.data.frame(trans=label, W=signif(tmp$statistic,digits=4), p=signif(tmp$p.value, digits=4)))
   })
   TRANS<-dplyr::mutate(dplyr::arrange(ladder, desc(.data$W), desc(.data$p)), trans=as.character(.data$trans))[1,]
+  # apply transformation formula
   if(any(x<=0)) {
-    return(c(list(val=eval(parse(text=sub("x","sign(x)*abs(x)", TRANS$trans)))), TRANS))
+    out<-c(list(val=eval(parse(text=sub("x","sign(x)*abs(x)", TRANS$trans)))), TRANS)
   } else {
-    return(c(list(val=eval(parse(text=TRANS$trans))), TRANS))
+    out<-c(list(val=eval(parse(text=TRANS$trans))), TRANS)
   }
+  # integrate back NA
+  if (exists("nax")) {
+    for(i in nax) {out$val<-insert(out$val,i,NA)}
+  }
+  return(out)
 }
