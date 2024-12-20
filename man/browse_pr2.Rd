@@ -4,15 +4,17 @@
 \alias{browse_pr2}
 \title{Browse PR2 database taxonomy}
 \usage{
-browse_pr2(x, partial = TRUE)
+browse_pr2(x, clade = FALSE, partial = TRUE)
 }
 \arguments{
 \item{x}{a clade name}
 
+\item{clade}{output full clade for exact match, off by default}
+
 \item{partial}{allow partial match, TRUE by default}
 }
 \value{
-a rank name for exact match, a named list for partial match(es) or NA if not found
+a character string corresponding to the rank name or a named vector for exact match, a named list for partial match(es) or NA if not found
 }
 \description{
 Determine the taxonomic rank of the provided clade name in the PR2 database
