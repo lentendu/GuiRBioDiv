@@ -18,7 +18,8 @@ Imports:
     plyr,
     dplyr,
     tidyr,
-    tibble
+    tibble,
+    pr2database
 Suggests:
     rcompanion,
     testthat (>= 3.0.0)

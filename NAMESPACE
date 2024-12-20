@@ -2,6 +2,7 @@
 
 export(alpha_index)
 export(alpha_residual)
+export(browse_pr2)
 export(endemic)
 export(hill_index)
 export(interleave)
