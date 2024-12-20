@@ -19,7 +19,8 @@ Imports:
     dplyr,
     tidyr,
     tibble,
-    pr2database
+    pr2database,
+    stringr
 Suggests:
     rcompanion,
     testthat (>= 3.0.0)
